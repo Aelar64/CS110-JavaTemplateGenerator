@@ -8,6 +8,7 @@ NAME = 'Joshua Merrill'
 verbose = False
 scanner = False
 simulate = False
+force = False
 
 if len(argv) == 1:
     filepath = input("Please enter the location of your Java program: ")
@@ -21,6 +22,8 @@ try:
         scanner = True
     if 'S' in argv[2]:
         simulate = True
+    if 'f' in argv[2]:
+        force = True
 except IndexError:
     verbose = False
     scanner = False
@@ -36,9 +39,10 @@ for folder in filepath.split("/")[:-1]:
 print(f"File: {directory}{filename}.java")
 if not simulate:
     try:
-        javaFile = open(f"{directory}/{filename}.java", "x")
+        javaFile = open(f"{directory}/{filename}.java", "w" if force else "x")
     except FileExistsError:
         print(f"Error: the specified file '{filename}.java' already exists.")
+        print(f"Use -f to overwrite {filename}.java.")
         exit()
 
 filecontents = ""
