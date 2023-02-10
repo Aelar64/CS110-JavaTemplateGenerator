@@ -42,7 +42,7 @@ if not simulate:
         javaFile = open(f"{directory}/{filename}.java", "w" if force else "x")
     except FileExistsError:
         print(f"Error: the specified file '{filename}.java' already exists.")
-        print(f"Use -f to overwrite {filename}.java.0")
+        print(f"Use -f to overwrite {filename}.java.")
         exit()
 
 filecontents = ""
